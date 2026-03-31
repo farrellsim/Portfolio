@@ -96,7 +96,7 @@ const data = {
     degree: "B.S. in Software Engineering (Honors)",
     location: "Subang Jaya, Selangor",
     period: "Sep 2023 — Aug 2026",
-    gpa: "3.30",
+    gpa: "3.44",
   },
   leadership: {
     role: "Head of Visual Marketing",
@@ -273,7 +273,8 @@ function Counter({ value, suffix }) {
 
   const runCycle = useCallback(() => {
     setCount(0);
-    const dur = 1800, steps = 60;
+    const dur = 1800,
+      steps = 60;
     let step = 0;
     timerRef.current = setInterval(() => {
       step++;
@@ -347,7 +348,9 @@ function Navbar() {
       document.body.style.cssText = "";
       window.scrollTo(0, y);
     }
-    return () => { document.body.style.cssText = ""; };
+    return () => {
+      document.body.style.cssText = "";
+    };
   }, [open]);
   const links = ["about", "experience", "projects", "skills", "contact"];
   return (
@@ -491,7 +494,9 @@ function Stats() {
 function About() {
   return (
     <section id="about" className="section section--orbs">
-      <div className="orb orb--1" /><div className="orb orb--2" /><div className="orb orb--3" />
+      <div className="orb orb--1" />
+      <div className="orb orb--2" />
+      <div className="orb orb--3" />
       <div className="section__inner">
         <Reveal>
           <p className="section__label">
@@ -510,7 +515,9 @@ function About() {
           <Reveal delay={0.2}>
             <div className="edu-card-v2">
               <div className="edu-card-v2__top">
-                <div className="edu-card-v2__icon"><GradCapIcon /></div>
+                <div className="edu-card-v2__icon">
+                  <GradCapIcon />
+                </div>
                 <span className="edu-card-v2__badge">Current</span>
               </div>
               <p className="edu-card-v2__school">{data.education.school}</p>
@@ -521,7 +528,9 @@ function About() {
               </div>
               <div className="edu-card-v2__gpa">
                 <span className="edu-card-v2__gpa-label">GPA</span>
-                <span className="edu-card-v2__gpa-value">{data.education.gpa}</span>
+                <span className="edu-card-v2__gpa-value">
+                  {data.education.gpa}
+                </span>
                 <span className="edu-card-v2__gpa-max">/ 4.00</span>
               </div>
             </div>
@@ -579,13 +588,17 @@ function Experience() {
               <div className="timeline__card">
                 <div className="tcard__header">
                   <div>
-                    <span className="tcard__type tcard__type--leadership">Leadership</span>
+                    <span className="tcard__type tcard__type--leadership">
+                      Leadership
+                    </span>
                     <h3 className="tcard__role">{data.leadership.role}</h3>
                     <p className="tcard__company">
                       <span className="accent">@</span> {data.leadership.org}
                     </p>
                   </div>
-                  <span className="tcard__period">{data.leadership.period}</span>
+                  <span className="tcard__period">
+                    {data.leadership.period}
+                  </span>
                 </div>
                 <ul className="tcard__points">
                   {data.leadership.points.map((pt, j) => (
@@ -616,17 +629,26 @@ function ProjectCard({ p, i }) {
       <p className="project-card__sub">{p.subtitle}</p>
       <ul className="project-card__points">
         {p.points.map((pt, j) => (
-          <li key={j}><span style={{ color: p.accent }}>▹</span> {pt}</li>
+          <li key={j}>
+            <span style={{ color: p.accent }}>▹</span> {pt}
+          </li>
         ))}
       </ul>
       <div className="project-card__stack">
-        {p.stack.map((s) => <span key={s} className="tag">{s}</span>)}
+        {p.stack.map((s) => (
+          <span key={s} className="tag">
+            {s}
+          </span>
+        ))}
       </div>
       {p.video && (
         <div className="project-card__video">
-          <iframe src={p.video} title={`${p.name} demo`}
+          <iframe
+            src={p.video}
+            title={`${p.name} demo`}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen />
+            allowFullScreen
+          />
         </div>
       )}
     </div>
@@ -638,7 +660,8 @@ function Projects() {
   const total = data.projects.length;
   return (
     <section id="projects" className="section section--orbs">
-      <div className="orb orb--1" /><div className="orb orb--2" />
+      <div className="orb orb--1" />
+      <div className="orb orb--2" />
       <div className="section__inner">
         <Reveal>
           <p className="section__label">
@@ -651,7 +674,10 @@ function Projects() {
         <div className="projects__grid projects__grid--desktop">
           {data.projects.map((p, i) => (
             <Reveal key={i} delay={i * 0.12}>
-              <div className="project-card" style={{ "--accent-color": p.accent }}>
+              <div
+                className="project-card"
+                style={{ "--accent-color": p.accent }}
+              >
                 <div className="project-card__glow" />
                 <div className="project-card__top">
                   <span className="project-card__num">0{i + 1}</span>
@@ -661,12 +687,16 @@ function Projects() {
                 <p className="project-card__sub">{p.subtitle}</p>
                 <ul className="project-card__points">
                   {p.points.map((pt, j) => (
-                    <li key={j}><span style={{ color: p.accent }}>▹</span> {pt}</li>
+                    <li key={j}>
+                      <span style={{ color: p.accent }}>▹</span> {pt}
+                    </li>
                   ))}
                 </ul>
                 <div className="project-card__stack">
                   {p.stack.map((s) => (
-                    <span key={s} className="tag">{s}</span>
+                    <span key={s} className="tag">
+                      {s}
+                    </span>
                   ))}
                 </div>
                 {p.video && (
@@ -688,16 +718,47 @@ function Projects() {
         <div className="projects__carousel--mobile">
           <ProjectCard p={data.projects[active]} i={active} />
           <div className="carousel__controls">
-            <button className="carousel__btn" onClick={() => setActive((a) => (a - 1 + total) % total)} aria-label="Previous">
-              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+            <button
+              className="carousel__btn"
+              onClick={() => setActive((a) => (a - 1 + total) % total)}
+              aria-label="Previous"
+            >
+              <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
             </button>
             <div className="carousel__dots">
               {data.projects.map((_, i) => (
-                <button key={i} className={`carousel__dot ${i === active ? "carousel__dot--active" : ""}`} onClick={() => setActive(i)} aria-label={`Project ${i + 1}`} />
+                <button
+                  key={i}
+                  className={`carousel__dot ${i === active ? "carousel__dot--active" : ""}`}
+                  onClick={() => setActive(i)}
+                  aria-label={`Project ${i + 1}`}
+                />
               ))}
             </div>
-            <button className="carousel__btn" onClick={() => setActive((a) => (a + 1) % total)} aria-label="Next">
-              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            <button
+              className="carousel__btn"
+              onClick={() => setActive((a) => (a + 1) % total)}
+              aria-label="Next"
+            >
+              <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
             </button>
           </div>
         </div>
@@ -808,7 +869,18 @@ function Contact() {
             className="btn btn--glow contact__btn"
           >
             Say Hello
-            <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" style={{marginLeft:'6px'}}><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            <svg
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              style={{ marginLeft: "6px" }}
+            >
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="M2 7l10 7 10-7" />
+            </svg>
           </a>
           <div className="contact__links">
             <a
@@ -910,7 +982,14 @@ function FolderIcon() {
 
 function InstagramIcon() {
   return (
-    <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+    <svg
+      width="16"
+      height="16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
       <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
       <circle cx="12" cy="12" r="4" />
       <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
