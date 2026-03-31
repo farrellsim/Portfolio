@@ -724,6 +724,7 @@
 }
 
 @media (max-width: 768px) {
+  .hero__scroll-hint { display: none; }
   .nav { padding: 1.1rem 1.5rem; }
   .nav__links {
     display: none;

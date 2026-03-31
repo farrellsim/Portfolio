@@ -372,7 +372,7 @@ function Hero() {
             <p className="hero__typed">
               <TypeWriter items={data.titles} />
             </p>
-            <p className="hero__bio">{data.bio.split('\n\n')[0]}</p>
+            <p className="hero__bio">{data.bio.split("\n\n")[0]}</p>
             <div className="hero__cta">
               <a href="#projects" className="btn btn--glow">
                 View My Work
@@ -460,7 +460,9 @@ function About() {
         <div className="about__grid">
           <Reveal delay={0.1}>
             <div className="about__text">
-              {data.bio.split('\n\n').map((para, i) => <p key={i}>{para}</p>)}
+              {data.bio.split("\n\n").map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
               <div className="edu-card">
                 <div className="edu-card__icon">
                   <GradCapIcon />
