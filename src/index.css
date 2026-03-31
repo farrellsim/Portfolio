@@ -5,11 +5,11 @@
 }
 
 :root {
-  --bg: #0a0a0a;
-  --surface: #111111;
-  --border: #1e1e1e;
-  --text: #c8c8c8;
-  --text-dim: #666666;
+  --bg: #111214;
+  --surface: #191b1e;
+  --border: #272a2e;
+  --text: #d2d4d8;
+  --text-dim: #72757a;
   --highlight: #ffffff;
   --font: 'Inter', system-ui, -apple-system, sans-serif;
 }

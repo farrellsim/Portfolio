@@ -15,6 +15,7 @@ const data = {
   phone: "(+60) 1126213417",
   linkedin: "linkedin.com/in/xavierokenjirofarrell",
   github: "github.com/farrellsim",
+  instagram: "instagram.com/farrell.sim",
   bio: "Final-year Software Engineering student at Taylor's University with hands-on experience across software development, web technologies, AI automation, quality assurance, and project management. I'm passionate about building reliable, scalable solutions while ensuring both functionality and user experience are well thought out.\n\nA tech enthusiast by nature, I enjoy continuously learning and improving — whether it's refining code, optimising processes, or exploring new tools. Outside of tech, I stay active through sports, unwind with games, and am currently working on improving my golf game, one swing at a time.",
   stats: [
     { value: 472, suffix: "+", label: "☕ Cups of Coffee" },
@@ -52,6 +53,7 @@ const data = {
         "Conducted user research and iterative testing across connectivity and language challenges.",
       ],
       accent: "#00d4aa",
+      video: "https://www.youtube.com/embed/CXhs7iIb_ho",
     },
     {
       name: "Smart CV Analyzer",
@@ -267,29 +269,43 @@ function Reveal({ children, delay = 0, className = "" }) {
 function Counter({ value, suffix }) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
-  const started = useRef(false);
+  const timerRef = useRef(null);
+
+  const runCycle = useCallback(() => {
+    setCount(0);
+    const dur = 1800, steps = 60;
+    let step = 0;
+    timerRef.current = setInterval(() => {
+      step++;
+      setCount(Math.round(value * (step / steps)));
+      if (step >= steps) {
+        clearInterval(timerRef.current);
+        // pause then loop again
+        timerRef.current = setTimeout(runCycle, 3000);
+      }
+    }, dur / steps);
+  }, [value]);
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
       ([e]) => {
-        if (e.isIntersecting && !started.current) {
-          started.current = true;
-          const dur = 1600,
-            steps = 60;
-          let step = 0;
-          const timer = setInterval(() => {
-            step++;
-            setCount(Math.round(value * (step / steps)));
-            if (step >= steps) clearInterval(timer);
-          }, dur / steps);
+        if (e.isIntersecting) {
+          runCycle();
+          obs.disconnect();
         }
       },
       { threshold: 0.5 },
     );
     obs.observe(el);
-    return () => obs.disconnect();
-  }, [value]);
+    return () => {
+      obs.disconnect();
+      clearInterval(timerRef.current);
+      clearTimeout(timerRef.current);
+    };
+  }, [runCycle]);
+
   return (
     <span ref={ref}>
       {count}
@@ -321,6 +337,18 @@ function Navbar() {
     window.addEventListener("scroll", h);
     return () => window.removeEventListener("scroll", h);
   }, []);
+  useEffect(() => {
+    if (open) {
+      const y = window.scrollY;
+      document.body.dataset.scrollY = y;
+      document.body.style.cssText = `position:fixed;top:-${y}px;left:0;right:0;`;
+    } else {
+      const y = parseInt(document.body.dataset.scrollY || "0");
+      document.body.style.cssText = "";
+      window.scrollTo(0, y);
+    }
+    return () => { document.body.style.cssText = ""; };
+  }, [open]);
   const links = ["about", "experience", "projects", "skills", "contact"];
   return (
     <nav className={`nav ${scrolled ? "nav--scrolled" : ""}`}>
@@ -372,6 +400,11 @@ function Hero() {
             <p className="hero__typed">
               <TypeWriter items={data.titles} />
             </p>
+            <div className="hero__location">
+              <span>🇮🇩 Indonesian</span>
+              <span className="hero__location-dot">·</span>
+              <span>🇧🇳 Based in Brunei</span>
+            </div>
             <p className="hero__bio">{data.bio.split("\n\n")[0]}</p>
             <div className="hero__cta">
               <a href="#projects" className="btn btn--glow">
@@ -397,6 +430,14 @@ function Hero() {
                 className="social-link"
               >
                 <LinkedInIcon /> LinkedIn
+              </a>
+              <a
+                href={`https://${data.instagram}`}
+                target="_blank"
+                rel="noreferrer"
+                className="social-link"
+              >
+                <InstagramIcon /> Instagram
               </a>
             </div>
           </Reveal>
@@ -449,7 +490,8 @@ function Stats() {
 /* ─── ABOUT ───────────────────────────────────────── */
 function About() {
   return (
-    <section id="about" className="section">
+    <section id="about" className="section section--orbs">
+      <div className="orb orb--1" /><div className="orb orb--2" /><div className="orb orb--3" />
       <div className="section__inner">
         <Reveal>
           <p className="section__label">
@@ -463,38 +505,25 @@ function About() {
               {data.bio.split("\n\n").map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
-              <div className="edu-card">
-                <div className="edu-card__icon">
-                  <GradCapIcon />
-                </div>
-                <div>
-                  <p className="edu-card__school">{data.education.school}</p>
-                  <p className="edu-card__degree">{data.education.degree}</p>
-                  <p className="edu-card__meta">
-                    {data.education.location} · {data.education.period}
-                  </p>
-                  <p className="edu-card__gpa">
-                    GPA: <span className="accent">{data.education.gpa}</span>
-                  </p>
-                </div>
-              </div>
             </div>
           </Reveal>
           <Reveal delay={0.2}>
-            <div className="leadership-card">
-              <div className="lcard__label">
-                <span className="accent">//</span> Leadership
+            <div className="edu-card-v2">
+              <div className="edu-card-v2__top">
+                <div className="edu-card-v2__icon"><GradCapIcon /></div>
+                <span className="edu-card-v2__badge">Current</span>
               </div>
-              <h4>{data.leadership.role}</h4>
-              <p className="lcard__org">{data.leadership.org}</p>
-              <p className="lcard__period">{data.leadership.period}</p>
-              <ul className="lcard__points">
-                {data.leadership.points.map((p, i) => (
-                  <li key={i}>
-                    <span className="accent">▹</span> {p}
-                  </li>
-                ))}
-              </ul>
+              <p className="edu-card-v2__school">{data.education.school}</p>
+              <p className="edu-card-v2__degree">{data.education.degree}</p>
+              <div className="edu-card-v2__meta">
+                <span>📍 {data.education.location}</span>
+                <span>🗓 {data.education.period}</span>
+              </div>
+              <div className="edu-card-v2__gpa">
+                <span className="edu-card-v2__gpa-label">GPA</span>
+                <span className="edu-card-v2__gpa-value">{data.education.gpa}</span>
+                <span className="edu-card-v2__gpa-max">/ 4.00</span>
+              </div>
             </div>
           </Reveal>
         </div>
@@ -543,6 +572,31 @@ function Experience() {
               </div>
             </Reveal>
           ))}
+          <Reveal delay={0.2}>
+            <div className="timeline__item">
+              <div className="timeline__dot timeline__dot--leadership" />
+              <div className="timeline__line" />
+              <div className="timeline__card">
+                <div className="tcard__header">
+                  <div>
+                    <span className="tcard__type tcard__type--leadership">Leadership</span>
+                    <h3 className="tcard__role">{data.leadership.role}</h3>
+                    <p className="tcard__company">
+                      <span className="accent">@</span> {data.leadership.org}
+                    </p>
+                  </div>
+                  <span className="tcard__period">{data.leadership.period}</span>
+                </div>
+                <ul className="tcard__points">
+                  {data.leadership.points.map((pt, j) => (
+                    <li key={j}>
+                      <span className="accent">▹</span> {pt}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -550,9 +604,41 @@ function Experience() {
 }
 
 /* ─── PROJECTS ────────────────────────────────────── */
-function Projects() {
+function ProjectCard({ p, i }) {
   return (
-    <section id="projects" className="section">
+    <div className="project-card" style={{ "--accent-color": p.accent }}>
+      <div className="project-card__glow" />
+      <div className="project-card__top">
+        <span className="project-card__num">0{i + 1}</span>
+        <FolderIcon />
+      </div>
+      <h3 className="project-card__name">{p.name}</h3>
+      <p className="project-card__sub">{p.subtitle}</p>
+      <ul className="project-card__points">
+        {p.points.map((pt, j) => (
+          <li key={j}><span style={{ color: p.accent }}>▹</span> {pt}</li>
+        ))}
+      </ul>
+      <div className="project-card__stack">
+        {p.stack.map((s) => <span key={s} className="tag">{s}</span>)}
+      </div>
+      {p.video && (
+        <div className="project-card__video">
+          <iframe src={p.video} title={`${p.name} demo`}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Projects() {
+  const [active, setActive] = useState(0);
+  const total = data.projects.length;
+  return (
+    <section id="projects" className="section section--orbs">
+      <div className="orb orb--1" /><div className="orb orb--2" />
       <div className="section__inner">
         <Reveal>
           <p className="section__label">
@@ -560,13 +646,12 @@ function Projects() {
           </p>
           <h2 className="section__title">Things I've Built</h2>
         </Reveal>
-        <div className="projects__grid">
+
+        {/* Desktop grid */}
+        <div className="projects__grid projects__grid--desktop">
           {data.projects.map((p, i) => (
             <Reveal key={i} delay={i * 0.12}>
-              <div
-                className="project-card"
-                style={{ "--accent-color": p.accent }}
-              >
+              <div className="project-card" style={{ "--accent-color": p.accent }}>
                 <div className="project-card__glow" />
                 <div className="project-card__top">
                   <span className="project-card__num">0{i + 1}</span>
@@ -576,21 +661,45 @@ function Projects() {
                 <p className="project-card__sub">{p.subtitle}</p>
                 <ul className="project-card__points">
                   {p.points.map((pt, j) => (
-                    <li key={j}>
-                      <span style={{ color: p.accent }}>▹</span> {pt}
-                    </li>
+                    <li key={j}><span style={{ color: p.accent }}>▹</span> {pt}</li>
                   ))}
                 </ul>
                 <div className="project-card__stack">
                   {p.stack.map((s) => (
-                    <span key={s} className="tag">
-                      {s}
-                    </span>
+                    <span key={s} className="tag">{s}</span>
                   ))}
                 </div>
+                {p.video && (
+                  <div className="project-card__video">
+                    <iframe
+                      src={p.video}
+                      title={`${p.name} demo`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                )}
               </div>
             </Reveal>
           ))}
+        </div>
+
+        {/* Mobile carousel */}
+        <div className="projects__carousel--mobile">
+          <ProjectCard p={data.projects[active]} i={active} />
+          <div className="carousel__controls">
+            <button className="carousel__btn" onClick={() => setActive((a) => (a - 1 + total) % total)} aria-label="Previous">
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <div className="carousel__dots">
+              {data.projects.map((_, i) => (
+                <button key={i} className={`carousel__dot ${i === active ? "carousel__dot--active" : ""}`} onClick={() => setActive(i)} aria-label={`Project ${i + 1}`} />
+              ))}
+            </div>
+            <button className="carousel__btn" onClick={() => setActive((a) => (a + 1) % total)} aria-label="Next">
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -698,7 +807,8 @@ function Contact() {
             href={`mailto:${data.email}`}
             className="btn btn--glow contact__btn"
           >
-            Say Hello ✉
+            Say Hello
+            <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" style={{marginLeft:'6px'}}><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
           </a>
           <div className="contact__links">
             <a
@@ -716,6 +826,14 @@ function Contact() {
               className="contact__link"
             >
               <GithubIcon /> GitHub
+            </a>
+            <a
+              href={`https://${data.instagram}`}
+              target="_blank"
+              rel="noreferrer"
+              className="contact__link"
+            >
+              <InstagramIcon /> Instagram
             </a>
             <a href={`tel:${data.phone}`} className="contact__link">
               <PhoneIcon /> {data.phone}
@@ -790,6 +908,15 @@ function FolderIcon() {
   );
 }
 
+function InstagramIcon() {
+  return (
+    <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
+    </svg>
+  );
+}
 function GradCapIcon() {
   return (
     <svg
