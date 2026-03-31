@@ -15,7 +15,7 @@ const data = {
   phone: "(+60) 1126213417",
   linkedin: "linkedin.com/in/xavierokenjirofarrell",
   github: "github.com/farrellsim",
-  bio: "Final-year Software Engineering student at Taylor's University with hands-on experience in software development, web technologies, and AI automation. Growing focus on project management and quality assurance to support the development of reliable and scalable digital solutions.",
+  bio: "Final-year Software Engineering student at Taylor's University with hands-on experience across software development, web technologies, AI automation, quality assurance, and project management. I'm passionate about building reliable, scalable solutions while ensuring both functionality and user experience are well thought out.\n\nA tech enthusiast by nature, I enjoy continuously learning and improving — whether it's refining code, optimising processes, or exploring new tools. Outside of tech, I stay active through sports, unwind with games, and am currently working on improving my golf game, one swing at a time.",
   stats: [
     { value: 472, suffix: "+", label: "☕ Cups of Coffee" },
     {
@@ -372,7 +372,7 @@ function Hero() {
             <p className="hero__typed">
               <TypeWriter items={data.titles} />
             </p>
-            <p className="hero__bio">{data.bio}</p>
+            <p className="hero__bio">{data.bio.split('\n\n')[0]}</p>
             <div className="hero__cta">
               <a href="#projects" className="btn btn--glow">
                 View My Work
@@ -460,7 +460,7 @@ function About() {
         <div className="about__grid">
           <Reveal delay={0.1}>
             <div className="about__text">
-              <p>{data.bio}</p>
+              {data.bio.split('\n\n').map((para, i) => <p key={i}>{para}</p>)}
               <div className="edu-card">
                 <div className="edu-card__icon">
                   <GradCapIcon />
