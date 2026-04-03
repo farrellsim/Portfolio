@@ -111,8 +111,10 @@ const data = {
 };
 
 /* ─── PARTICLES CANVAS ────────────────────────────── */
-function ParticleCanvas() {
+function ParticleCanvas({ theme }) {
   const canvasRef = useRef(null);
+  const themeRef = useRef(theme);
+  useEffect(() => { themeRef.current = theme; }, [theme]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -151,7 +153,8 @@ function ParticleCanvas() {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0,212,170,${this.alpha})`;
+        const a = themeRef.current === 'light' ? this.alpha * 0.5 : this.alpha;
+        ctx.fillStyle = `rgba(0,212,170,${a})`;
         ctx.fill();
       }
     }
@@ -176,7 +179,8 @@ function ParticleCanvas() {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(0,212,170,${0.08 * (1 - dist / 120)})`;
+            const lineA = themeRef.current === 'light' ? 0.04 : 0.08;
+            ctx.strokeStyle = `rgba(0,212,170,${lineA * (1 - dist / 120)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -330,7 +334,7 @@ function ScrollProgress() {
 }
 
 /* ─── NAVBAR ──────────────────────────────────────── */
-function Navbar() {
+function Navbar({ theme, toggleTheme }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -378,16 +382,21 @@ function Navbar() {
             Hire Me
           </a>
         </li>
+        <li>
+          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+            {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+          </button>
+        </li>
       </ul>
     </nav>
   );
 }
 
 /* ─── HERO ────────────────────────────────────────── */
-function Hero() {
+function Hero({ theme }) {
   return (
     <section id="hero" className="hero">
-      <ParticleCanvas />
+      <ParticleCanvas theme={theme} />
       <div className="hero__inner">
         <div className="hero__left">
           <Reveal>
@@ -1012,14 +1021,52 @@ function GradCapIcon() {
   );
 }
 
+/* ─── THEME ICONS ─────────────────────────────────── */
+function SunIcon() {
+  return (
+    <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="5" />
+      <line x1="12" y1="1" x2="12" y2="3" />
+      <line x1="12" y1="21" x2="12" y2="23" />
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+      <line x1="1" y1="12" x2="3" y2="12" />
+      <line x1="21" y1="12" x2="23" y2="12" />
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+    </svg>
+  );
+}
+
+function MoonIcon() {
+  return (
+    <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
+  );
+}
+
 /* ─── APP ─────────────────────────────────────────── */
 export default function App() {
+  const [theme, setTheme] = useState(() => {
+    const s = localStorage.getItem('theme');
+    if (s === 'light' || s === 'dark') return s;
+    return 'dark';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark');
+
   return (
     <>
       <ScrollProgress />
-      <Navbar />
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
       <main>
-        <Hero />
+        <Hero theme={theme} />
         <Stats />
         <About />
         <Experience />
