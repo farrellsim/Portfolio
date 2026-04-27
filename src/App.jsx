@@ -96,7 +96,7 @@ const data = {
     degree: "B.S. in Software Engineering (Honors)",
     location: "Subang Jaya, Selangor",
     period: "Sep 2023 — Aug 2026",
-    gpa: "3.44",
+    gpa: "3.52",
   },
   leadership: {
     role: "Head of Visual Marketing",
@@ -114,7 +114,9 @@ const data = {
 function ParticleCanvas({ theme }) {
   const canvasRef = useRef(null);
   const themeRef = useRef(theme);
-  useEffect(() => { themeRef.current = theme; }, [theme]);
+  useEffect(() => {
+    themeRef.current = theme;
+  }, [theme]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -153,7 +155,7 @@ function ParticleCanvas({ theme }) {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-        const a = themeRef.current === 'light' ? this.alpha * 0.5 : this.alpha;
+        const a = themeRef.current === "light" ? this.alpha * 0.5 : this.alpha;
         ctx.fillStyle = `rgba(0,212,170,${a})`;
         ctx.fill();
       }
@@ -179,7 +181,7 @@ function ParticleCanvas({ theme }) {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            const lineA = themeRef.current === 'light' ? 0.04 : 0.08;
+            const lineA = themeRef.current === "light" ? 0.04 : 0.08;
             ctx.strokeStyle = `rgba(0,212,170,${lineA * (1 - dist / 120)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
@@ -383,8 +385,12 @@ function Navbar({ theme, toggleTheme }) {
           </a>
         </li>
         <li>
-          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
-            {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+          <button
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? <SunIcon /> : <MoonIcon />}
           </button>
         </li>
       </ul>
@@ -1024,7 +1030,14 @@ function GradCapIcon() {
 /* ─── THEME ICONS ─────────────────────────────────── */
 function SunIcon() {
   return (
-    <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+    <svg
+      width="16"
+      height="16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
       <circle cx="12" cy="12" r="5" />
       <line x1="12" y1="1" x2="12" y2="3" />
       <line x1="12" y1="21" x2="12" y2="23" />
@@ -1040,7 +1053,14 @@ function SunIcon() {
 
 function MoonIcon() {
   return (
-    <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+    <svg
+      width="16"
+      height="16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
     </svg>
   );
@@ -1049,17 +1069,17 @@ function MoonIcon() {
 /* ─── APP ─────────────────────────────────────────── */
 export default function App() {
   const [theme, setTheme] = useState(() => {
-    const s = localStorage.getItem('theme');
-    if (s === 'light' || s === 'dark') return s;
-    return 'dark';
+    const s = localStorage.getItem("theme");
+    if (s === "light" || s === "dark") return s;
+    return "dark";
   });
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
-  const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark');
+  const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
 
   return (
     <>
