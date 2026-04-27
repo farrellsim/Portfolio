@@ -32,7 +32,7 @@ const data = {
     {
       role: "Software Engineer Intern",
       company: "Hostelent",
-      location: "Surabaya, Indonesia",
+      location: "Remote",
       period: "Jan 2024 — Jun 2024",
       type: "Internship",
       points: [
