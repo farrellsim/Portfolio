@@ -66,14 +66,20 @@ const data = {
       name: "DigiSahabat",
       subtitle: "Final Year Project",
       desc: "A culturally adaptive digital literacy mobile app for Orang Asli communities, with AI-powered voice assistance and chat guidance designed for low-literacy users.",
-      stack: ["React Native", "Tailwind", "Node.js", "MongoDB", "Gemini AI"],
-      video: "https://www.youtube.com/embed/CXhs7iIb_ho",
+      stack: [
+        "React Native",
+        "Tailwind",
+        "Node.js",
+        "MongoDB",
+        "Gemini AI API",
+        "Selenium",
+      ],
     },
     {
       name: "Smart CV Analyzer",
       subtitle: "University Project",
       desc: "A web-based CV evaluation system that uses Gemini AI to generate feedback on resume clarity, structure, and job relevance, with database storage for user submissions.",
-      stack: ["JavaScript", "HTML/CSS", "MySQL", "Gemini AI"],
+      stack: ["JavaScript", "HTML/CSS", "MySQL", "PHP", "Gemini AI API"],
     },
     {
       name: "DoomParade",
@@ -347,7 +353,7 @@ function Experience() {
   return (
     <section id="experience" className="section">
       <div className="container">
-        <SectionHead title="Where I've been." />
+        <SectionHead title="Where I've worked." />
         <div className="exp">
           {data.experience.map((e, i) => (
             <Reveal key={i} delay={i * 0.04}>
