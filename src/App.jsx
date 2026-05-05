@@ -71,7 +71,7 @@ const data = {
         "Tailwind",
         "Node.js",
         "MongoDB",
-        "Gemini AI API",
+        "Gemini AI",
         "Selenium",
       ],
     },
@@ -79,7 +79,7 @@ const data = {
       name: "Smart CV Analyzer",
       subtitle: "University Project",
       desc: "A web-based CV evaluation system that uses Gemini AI to generate feedback on resume clarity, structure, and job relevance, with database storage for user submissions.",
-      stack: ["JavaScript", "HTML/CSS", "MySQL", "PHP", "Gemini AI API"],
+      stack: ["JavaScript", "HTML/CSS", "MySQL", "PHP", "Gemini AI"],
     },
     {
       name: "DoomParade",
