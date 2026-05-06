@@ -230,7 +230,7 @@ function Hero() {
       <div className="hero__layout">
         <Reveal delay={0.05} className="hero__photo-wrap">
           <div className="hero__photo">
-            <img src="/avatar.PNG" alt="Xaviero Kenjiro Farrell" />
+            <img src="/avatar.jpg" alt="Xaviero Kenjiro Farrell" />
           </div>
         </Reveal>
 
