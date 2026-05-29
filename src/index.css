@@ -5,11 +5,11 @@
 }
 
 html[data-theme="light"] {
-  --bg: #f7f5f0;
-  --surface: #fdfcf8;
-  --paper: #efebe1;
-  --border: #e4e0d8;
-  --border-soft: #ece8df;
+  --bg: #ffffff;
+  --surface: #f7f7f7;
+  --paper: #efefef;
+  --border: #e2e2e2;
+  --border-soft: #ebebeb;
   --text: #1a1a1a;
   --text-muted: #5e5e5b;
   --text-faint: #9a9893;
@@ -50,9 +50,9 @@ html {
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: var(--font-sans);
-  font-size: 15.5px;
-  line-height: 1.62;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.3s ease, color 0.3s ease;
