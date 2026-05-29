@@ -206,70 +206,53 @@ function Navbar({ theme, toggleTheme, page, navigate }) {
 /* ─── HERO (HOME PAGE) ────────────────────────────── */
 function Hero({ navigate }) {
   return (
-    <div className="page-wrap hero-page">
-      <div className="hero container">
-        <div className="hero__layout">
-          <Reveal delay={0.05} className="hero__photo-wrap">
-            <div className="hero__photo">
-              <img src="/avatar.jpg" alt="Xaviero Kenjiro Farrell" />
+    <div className="page-wrap">
+      <div className="container">
+        <Reveal className="hero__simple">
+          <div className="hero__simple-top">
+            <div className="hero__avatar-sm">
+              <img src="/avatar.PNG" alt="Farrell" />
             </div>
-          </Reveal>
-
-          <Reveal className="hero__body">
-            <h1 className="hero__greeting">
-              Hi <span className="hero__wave" aria-hidden="true">👋</span>
-            </h1>
-            <p className="hero__intro">
-              I'm <strong>{data.nickname}</strong>{" "}
-              <span className="hero__intro-fullname">({data.name})</span>.{" "}
-              Final-year Software Engineering student at{" "}
-              <span className="hero__hl">Taylor's University</span>, currently in{" "}
-              <span className="hero__hl">Jakarta</span> as a UI/UX & Information
-              Systems Intern at <span className="hero__hl">Avenew Group</span>.
-            </p>
-
-            <div className="hero__meta">
-              <span>📍 Jakarta, Indonesia</span>
-              <span className="hero__meta-dot">·</span>
-              <span>🇧🇳 grew up in Brunei</span>
-              <span className="hero__meta-dot">·</span>
-              <span className="hero__meta-avail">open Sept 2026</span>
-            </div>
-
-            <div className="hero__cta">
-              <a href={`mailto:${data.email}`} className="btn btn--primary">
-                say hi
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
-              </a>
-              <div className="hero__socials">
-                <a href={`https://${data.github}`} target="_blank" rel="noreferrer" className="social-link">
-                  <GithubIcon /> GitHub
-                </a>
-                <a href={`https://${data.linkedin}`} target="_blank" rel="noreferrer" className="social-link">
-                  <LinkedInIcon /> LinkedIn
-                </a>
-                <a href={`https://${data.instagram}`} target="_blank" rel="noreferrer" className="social-link">
-                  <InstagramIcon /> Instagram
-                </a>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-
-        {/* Quick nav tiles */}
-        <Reveal delay={0.2}>
-          <div className="hero__tiles">
-            {["about", "experience", "projects", "skills"].map((p) => (
-              <button key={p} className="hero__tile" onClick={() => navigate(p)}>
-                <span className="hero__tile-label">{p}</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
-              </button>
-            ))}
+            <h1 className="hero__greeting">Hi <span className="hero__wave">👋</span></h1>
           </div>
+
+          <p className="hero__intro">
+            I'm <strong>{data.nickname}</strong>{" "}
+            <span className="hero__intro-fullname">({data.name})</span>.{" "}
+            Final-year Software Engineering student at{" "}
+            <span className="hero__hl">Taylor's University</span>, currently in{" "}
+            <span className="hero__hl">Jakarta</span> as a UI/UX & Information
+            Systems Intern at <span className="hero__hl">Avenew Group</span>.
+          </p>
+
+          <div className="hero__meta">
+            <span>📍 Jakarta, Indonesia</span>
+            <span className="hero__meta-dot">·</span>
+            <span>🇧🇳 grew up in Brunei</span>
+            <span className="hero__meta-dot">·</span>
+            <span className="hero__meta-avail">open Sept 2026</span>
+          </div>
+
+          <div className="hero__cta">
+            <a href={`mailto:${data.email}`} className="btn btn--primary">
+              say hi
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
+            <div className="hero__socials">
+              <a href={`https://${data.github}`} target="_blank" rel="noreferrer" className="social-link">
+                <GithubIcon /> GitHub
+              </a>
+              <a href={`https://${data.linkedin}`} target="_blank" rel="noreferrer" className="social-link">
+                <LinkedInIcon /> LinkedIn
+              </a>
+              <a href={`https://${data.instagram}`} target="_blank" rel="noreferrer" className="social-link">
+                <InstagramIcon /> Instagram
+              </a>
+            </div>
+          </div>
+
         </Reveal>
       </div>
     </div>
@@ -296,34 +279,13 @@ function PageWrap({ title, children }) {
 function About() {
   return (
     <PageWrap title="About me.">
-      <div className="about__layout">
-        <Reveal delay={0.05}>
-          <div className="about__text">
-            {data.about.map((para, i) => (
-              <p key={i}>{para}</p>
-            ))}
-          </div>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <aside className="edu">
-            <p className="edu__label">Education</p>
-            <p className="edu__school">{data.education.school}</p>
-            <p className="edu__school edu__school--2">{data.education.school2}</p>
-            <p className="edu__degree">{data.education.degree}</p>
-            <ul className="edu__meta">
-              <li>{data.education.period}</li>
-              <li>{data.education.location}</li>
-              <li className="edu__gpa">GPA {data.education.gpa} / 4.00</li>
-            </ul>
-            <div className="edu__coursework">
-              <p className="edu__label" style={{ marginTop: "1rem", marginBottom: "0.5rem" }}>Relevant coursework</p>
-              {data.education.coursework.map((c) => (
-                <span key={c} className="chip" style={{ display: "inline-block", marginRight: "0.35rem", marginBottom: "0.35rem" }}>{c}</span>
-              ))}
-            </div>
-          </aside>
-        </Reveal>
-      </div>
+      <Reveal delay={0.05}>
+        <div className="about__text">
+          {data.about.map((para, i) => (
+            <p key={i}>{para}</p>
+          ))}
+        </div>
+      </Reveal>
     </PageWrap>
   );
 }
@@ -419,6 +381,7 @@ function Skills() {
     { label: "Frameworks & Tools", items: data.skills.frameworks },
     { label: "Tools & Methodologies", items: data.skills.tools },
     { label: "Languages spoken", items: data.skills.languages_spoken },
+    { label: "Relevant coursework", items: data.education.coursework },
   ];
   return (
     <PageWrap title="What I work with.">
