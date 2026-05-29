@@ -157,7 +157,7 @@ function Navbar({ theme, toggleTheme, page, navigate }) {
     return () => { document.body.style.cssText = ""; };
   }, [open]);
 
-  const links = ["about", "experience", "projects", "skills", "contact"];
+  const links = ["home", "about", "experience", "projects", "skills", "contact"];
 
   const go = (p) => {
     navigate(p);
@@ -211,7 +211,7 @@ function Hero({ navigate }) {
         <Reveal className="hero__simple">
           <div className="hero__simple-top">
             <div className="hero__avatar-sm">
-              <img src="/avatar.PNG" alt="Farrell" />
+              <img src="/avatar.png" alt="Farrell" />
             </div>
             <h1 className="hero__greeting">Hi <span className="hero__wave">👋</span></h1>
           </div>
