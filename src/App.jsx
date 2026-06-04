@@ -65,7 +65,13 @@ const data = {
       name: "DigiSahabat",
       subtitle: "Final Year Capstone",
       desc: "Culturally adaptive digital literacy mobile app for Orang Asli communities in Malaysia. Led a 5-person team as PM and AI Engineer — owned roadmap, sprint planning, and stakeholder comms. AI-powered voice and chat guidance for low-literacy users.",
-      stack: ["React Native", "Node.js", "MongoDB", "Tailwind CSS", "Gemini AI"],
+      stack: [
+        "React Native",
+        "Node.js",
+        "MongoDB",
+        "Tailwind CSS",
+        "Gemini AI",
+      ],
     },
     {
       name: "Smart CV Analyzer",
@@ -82,9 +88,31 @@ const data = {
   ],
   skills: {
     languages: ["JavaScript", "TypeScript", "Python", "Java", "SQL"],
-    frameworks: ["React", "Next.js", "React Native", "Tailwind CSS", "RESTful APIs", "HTML", "CSS", "MongoDB"],
-    tools: ["Postman", "Playwright", "Selenium", "Manual Testing", "Git", "JIRA", "Agile (Scrum)", "SDLC"],
-    languages_spoken: ["English (Fluent)", "Indonesian (Native)", "Malay (Conversational)"],
+    frameworks: [
+      "React",
+      "Next.js",
+      "React Native",
+      "Tailwind CSS",
+      "RESTful APIs",
+      "HTML",
+      "CSS",
+      "MongoDB",
+    ],
+    tools: [
+      "Postman",
+      "Playwright",
+      "Selenium",
+      "Manual Testing",
+      "Git",
+      "JIRA",
+      "Agile (Scrum)",
+      "SDLC",
+    ],
+    languages_spoken: [
+      "English (Fluent)",
+      "Indonesian (Native)",
+      "Malay (Conversational)",
+    ],
   },
   education: {
     school: "Taylor's University, Malaysia",
@@ -93,7 +121,13 @@ const data = {
     location: "Subang Jaya, Selangor",
     period: "Sep 2023 – Aug 2026",
     gpa: "3.44",
-    coursework: ["Software Quality & Testing", "Software Project Management", "Object-Oriented Programming", "Data Structures & Algorithms", "Database Systems"],
+    coursework: [
+      "Software Quality & Testing",
+      "Software Project Management",
+      "Object-Oriented Programming",
+      "Data Structures & Algorithms",
+      "Database Systems",
+    ],
   },
 };
 
@@ -108,7 +142,10 @@ function Reveal({ children, delay = 0, className = "" }) {
     if (!el) return;
     const obs = new IntersectionObserver(
       ([e]) => {
-        if (e.isIntersecting) { setVisible(true); obs.disconnect(); }
+        if (e.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
       },
       { threshold: 0.05, rootMargin: "0px 0px -20px 0px" },
     );
@@ -154,10 +191,19 @@ function Navbar({ theme, toggleTheme, page, navigate }) {
       document.body.style.cssText = "";
       window.scrollTo(0, y);
     }
-    return () => { document.body.style.cssText = ""; };
+    return () => {
+      document.body.style.cssText = "";
+    };
   }, [open]);
 
-  const links = ["home", "about", "experience", "projects", "skills", "contact"];
+  const links = [
+    "home",
+    "about",
+    "experience",
+    "projects",
+    "skills",
+    "contact",
+  ];
 
   const go = (p) => {
     navigate(p);
@@ -172,7 +218,11 @@ function Navbar({ theme, toggleTheme, page, navigate }) {
         <span className="nav__logo-bracket">/&gt;</span>
       </button>
 
-      <button className="nav__burger" onClick={() => setOpen(!open)} aria-label="Menu">
+      <button
+        className="nav__burger"
+        onClick={() => setOpen(!open)}
+        aria-label="Menu"
+      >
         <span className={open ? "open" : ""} />
         <span className={open ? "open" : ""} />
       </button>
@@ -195,7 +245,11 @@ function Navbar({ theme, toggleTheme, page, navigate }) {
             </button>
           </li>
         </ul>
-        <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+        <button
+          className="theme-toggle"
+          onClick={toggleTheme}
+          aria-label="Toggle theme"
+        >
           {theme === "dark" ? <SunIcon /> : <MoonIcon />}
         </button>
       </div>
@@ -213,46 +267,70 @@ function Hero({ navigate }) {
             <div className="hero__avatar-sm">
               <img src="/avatar.png" alt="Farrell" />
             </div>
-            <h1 className="hero__greeting">Hi <span className="hero__wave">👋</span></h1>
+            <h1 className="hero__greeting">
+              Hi <span className="hero__wave">👋</span>
+            </h1>
           </div>
 
           <p className="hero__intro">
             I'm <strong>{data.nickname}</strong>{" "}
             <span className="hero__intro-fullname">({data.name})</span>.{" "}
             Final-year Software Engineering student at{" "}
-            <span className="hero__hl">Taylor's University</span>, currently in{" "}
-            <span className="hero__hl">Jakarta</span> as a UI/UX & Information
-            Systems Intern at <span className="hero__hl">Avenew Group</span>.
+            <span className="hero__hl">Taylor's University & UWE Bristol</span>,
+            currently in <span className="hero__hl">Jakarta</span> as an
+            Information Systems Intern at{" "}
+            <span className="hero__hl">Avenew Group</span>.
           </p>
 
           <div className="hero__meta">
             <span>📍 Jakarta, Indonesia</span>
             <span className="hero__meta-dot">·</span>
-            <span>🇧🇳 grew up in Brunei</span>
+            <span>🇧🇳 Grew up in Brunei</span>
             <span className="hero__meta-dot">·</span>
             <span className="hero__meta-avail">open Sept 2026</span>
           </div>
 
           <div className="hero__cta">
-            <a href={`mailto:${data.email}`} className="btn btn--primary">
+            <button onClick={() => navigate("contact")} className="btn btn--primary">
               say hi
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>
-            </a>
+            </button>
             <div className="hero__socials">
-              <a href={`https://${data.github}`} target="_blank" rel="noreferrer" className="social-link">
+              <a
+                href={`https://${data.github}`}
+                target="_blank"
+                rel="noreferrer"
+                className="social-link"
+              >
                 <GithubIcon /> GitHub
               </a>
-              <a href={`https://${data.linkedin}`} target="_blank" rel="noreferrer" className="social-link">
+              <a
+                href={`https://${data.linkedin}`}
+                target="_blank"
+                rel="noreferrer"
+                className="social-link"
+              >
                 <LinkedInIcon /> LinkedIn
               </a>
-              <a href={`https://${data.instagram}`} target="_blank" rel="noreferrer" className="social-link">
+              <a
+                href={`https://${data.instagram}`}
+                target="_blank"
+                rel="noreferrer"
+                className="social-link"
+              >
                 <InstagramIcon /> Instagram
               </a>
             </div>
           </div>
-
         </Reveal>
       </div>
     </div>
@@ -330,7 +408,9 @@ function ProjectCard({ p }) {
       <p className="proj__desc">{p.desc}</p>
       <div className="proj__stack">
         {p.stack.map((s) => (
-          <span key={s} className="chip">{s}</span>
+          <span key={s} className="chip">
+            {s}
+          </span>
         ))}
       </div>
     </article>
@@ -353,18 +433,45 @@ function Projects() {
       <div className="projects__carousel--mobile">
         <ProjectCard p={data.projects[active]} />
         <div className="carousel__controls">
-          <button className="carousel__btn" onClick={() => setActive((a) => (a - 1 + total) % total)} aria-label="Previous">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <button
+            className="carousel__btn"
+            onClick={() => setActive((a) => (a - 1 + total) % total)}
+            aria-label="Previous"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </button>
           <div className="carousel__dots">
             {data.projects.map((_, i) => (
-              <button key={i} className={`carousel__dot ${i === active ? "carousel__dot--active" : ""}`} onClick={() => setActive(i)} aria-label={`Project ${i + 1}`} />
+              <button
+                key={i}
+                className={`carousel__dot ${i === active ? "carousel__dot--active" : ""}`}
+                onClick={() => setActive(i)}
+                aria-label={`Project ${i + 1}`}
+              />
             ))}
           </div>
-          <button className="carousel__btn" onClick={() => setActive((a) => (a + 1) % total)} aria-label="Next">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <button
+            className="carousel__btn"
+            onClick={() => setActive((a) => (a + 1) % total)}
+            aria-label="Next"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <path d="M9 18l6-6-6-6" />
             </svg>
           </button>
@@ -392,7 +499,9 @@ function Skills() {
               <p className="skills__label">{g.label}</p>
               <div className="skills__chips">
                 {g.items.map((s) => (
-                  <span key={s} className="chip chip--lg">{s}</span>
+                  <span key={s} className="chip chip--lg">
+                    {s}
+                  </span>
                 ))}
               </div>
             </div>
@@ -410,25 +519,54 @@ function Contact() {
       <div className="contact container">
         <Reveal>
           <h2 className="contact__title">
-            Let's talk <span className="contact__wave" aria-hidden="true">👀</span>
+            Let's talk{" "}
+            <span className="contact__wave" aria-hidden="true">
+              👀
+            </span>
           </h2>
           <p className="contact__sub">
-            Open to grad roles, collaborations, and the occasional good conversation.
+            Open to grad roles, collaborations, and the occasional good
+            conversation.
           </p>
-          <a href={`mailto:${data.email}`} className="btn btn--primary contact__btn">
+          <a
+            href={`mailto:${data.email}`}
+            className="btn btn--primary contact__btn"
+          >
             {data.email}
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>
           </a>
           <div className="contact__links">
-            <a href={`https://${data.linkedin}`} target="_blank" rel="noreferrer" className="contact__link">
+            <a
+              href={`https://${data.linkedin}`}
+              target="_blank"
+              rel="noreferrer"
+              className="contact__link"
+            >
               <LinkedInIcon /> LinkedIn
             </a>
-            <a href={`https://${data.github}`} target="_blank" rel="noreferrer" className="contact__link">
+            <a
+              href={`https://${data.github}`}
+              target="_blank"
+              rel="noreferrer"
+              className="contact__link"
+            >
               <GithubIcon /> GitHub
             </a>
-            <a href={`https://${data.instagram}`} target="_blank" rel="noreferrer" className="contact__link">
+            <a
+              href={`https://${data.instagram}`}
+              target="_blank"
+              rel="noreferrer"
+              className="contact__link"
+            >
               <InstagramIcon /> Instagram
             </a>
             <a href={`tel:${data.phone}`} className="contact__link">
@@ -476,7 +614,14 @@ function LinkedInIcon() {
 
 function PhoneIcon() {
   return (
-    <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+    <svg
+      width="14"
+      height="14"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16z" />
     </svg>
   );
@@ -484,7 +629,14 @@ function PhoneIcon() {
 
 function InstagramIcon() {
   return (
-    <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+    <svg
+      width="14"
+      height="14"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
       <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
       <circle cx="12" cy="12" r="4" />
       <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
@@ -494,7 +646,14 @@ function InstagramIcon() {
 
 function SunIcon() {
   return (
-    <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+    <svg
+      width="15"
+      height="15"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
       <circle cx="12" cy="12" r="4" />
       <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
     </svg>
@@ -503,7 +662,14 @@ function SunIcon() {
 
 function MoonIcon() {
   return (
-    <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+    <svg
+      width="15"
+      height="15"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
     </svg>
   );
@@ -538,7 +704,11 @@ export default function App() {
 
   const navigate = (newPage) => {
     setPage(newPage);
-    window.history.pushState(null, "", newPage === "home" ? "#" : `#${newPage}`);
+    window.history.pushState(
+      null,
+      "",
+      newPage === "home" ? "#" : `#${newPage}`,
+    );
     window.scrollTo(0, 0);
   };
 
@@ -546,14 +716,19 @@ export default function App() {
 
   return (
     <>
-      <Navbar theme={theme} toggleTheme={toggleTheme} page={page} navigate={navigate} />
+      <Navbar
+        theme={theme}
+        toggleTheme={toggleTheme}
+        page={page}
+        navigate={navigate}
+      />
       <main className="main-page" key={page}>
-        {page === "home"       && <Hero navigate={navigate} />}
-        {page === "about"      && <About />}
+        {page === "home" && <Hero navigate={navigate} />}
+        {page === "about" && <About />}
         {page === "experience" && <Experience />}
-        {page === "projects"   && <Projects />}
-        {page === "skills"     && <Skills />}
-        {page === "contact"    && <Contact />}
+        {page === "projects" && <Projects />}
+        {page === "skills" && <Skills />}
+        {page === "contact" && <Contact />}
       </main>
       <Footer />
     </>
