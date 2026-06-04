@@ -363,17 +363,6 @@
   letter-spacing: -0.03em;
   color: var(--text);
 }
-.sh__title::after {
-  content: "";
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  background: var(--accent);
-  border-radius: 50%;
-  margin-left: 0.4rem;
-  vertical-align: middle;
-  transform: translateY(-3px);
-}
 
 /* ─── ABOUT ──────────────────────────────────────── */
 .about__layout {
