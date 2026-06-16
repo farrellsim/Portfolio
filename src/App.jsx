@@ -61,52 +61,9 @@ const data = {
       ],
     },
   ],
-  skills: {
-    languages: ["JavaScript", "TypeScript", "Python", "Java", "SQL"],
-    frameworks: [
-      "React",
-      "Next.js",
-      "React Native",
-      "Tailwind CSS",
-      "RESTful APIs",
-      "HTML",
-      "CSS",
-      "MongoDB",
-    ],
-    tools: [
-      "Postman",
-      "Playwright",
-      "Selenium",
-      "Manual Testing",
-      "Git",
-      "JIRA",
-      "Agile (Scrum)",
-      "SDLC",
-    ],
-    languages_spoken: [
-      "English (Fluent)",
-      "Indonesian (Native)",
-      "Malay (Conversational)",
-    ],
-  },
-  education: {
-    school: "Taylor's University, Malaysia",
-    school2: "University of the West England (UWE Bristol), UK",
-    degree: "B.S. in Software Engineering (Honors) – Dual Award Programme",
-    location: "Subang Jaya, Selangor",
-    period: "Sep 2023 – Aug 2026",
-    gpa: "3.44",
-    coursework: [
-      "Software Quality & Testing",
-      "Software Project Management",
-      "Object-Oriented Programming",
-      "Data Structures & Algorithms",
-      "Database Systems",
-    ],
-  },
 };
 
-const PAGES = ["home", "projects", "skills"];
+const PAGES = ["home", "projects"];
 
 /* ─── REVEAL ──────────────────────────────────────── */
 function Reveal({ children, delay = 0, className = "" }) {
@@ -171,7 +128,7 @@ function Navbar({ theme, toggleTheme, page, navigate }) {
     };
   }, [open]);
 
-  const links = ["home", "projects", "skills"];
+  const links = ["home", "projects"];
 
   const go = (p) => {
     navigate(p);
@@ -265,6 +222,9 @@ function Home({ navigate }) {
                 >
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>
+              </button>
+              <button onClick={() => navigate("projects")} className="btn btn--ghost">
+                projects I've done
               </button>
               <div className="hero__socials">
                 <a
@@ -415,37 +375,6 @@ function BuildLog() {
         </p>
       </div>
     </aside>
-  );
-}
-
-/* ─── SKILLS PAGE ─────────────────────────────────── */
-function Skills() {
-  const groups = [
-    { label: "Languages", items: data.skills.languages },
-    { label: "Frameworks & Tools", items: data.skills.frameworks },
-    { label: "Tools & Methodologies", items: data.skills.tools },
-    { label: "Languages spoken", items: data.skills.languages_spoken },
-    { label: "Relevant coursework", items: data.education.coursework },
-  ];
-  return (
-    <PageWrap title="What I work with.">
-      <div className="skills">
-        {groups.map((g, i) => (
-          <Reveal key={g.label} delay={i * 0.06}>
-            <div className="skills__group">
-              <p className="skills__label">{g.label}</p>
-              <div className="skills__chips">
-                {g.items.map((s) => (
-                  <span key={s} className="chip chip--lg">
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-    </PageWrap>
   );
 }
 
@@ -686,7 +615,6 @@ export default function App() {
       <main className="main-page" key={page}>
         {page === "home" && <Home navigate={navigate} />}
         {page === "projects" && <Projects />}
-        {page === "skills" && <Skills />}
       </main>
       <Footer />
     </>

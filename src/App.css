@@ -667,31 +667,6 @@
   line-height: 1.7;
 }
 
-/* ─── SKILLS ─────────────────────────────────────── */
-.skills {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-.skills__group {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 2rem;
-  align-items: start;
-}
-.skills__label {
-  font-size: 0.75rem;
-  color: var(--text);
-  font-weight: 600;
-  padding-top: 0.45rem;
-  letter-spacing: 0.01em;
-}
-.skills__chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-}
-
 /* ─── CONTACT ────────────────────────────────────── */
 .contact {
   text-align: center;
@@ -771,11 +746,6 @@
     gap: 2.25rem;
   }
   .edu { position: static; }
-  .skills__group {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-  .skills__label { padding-top: 0; }
   .exp__row {
     grid-template-columns: 1fr;
     gap: 0.4rem;
