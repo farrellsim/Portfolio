@@ -4,16 +4,17 @@ import "./App.css";
 /* ─── DATA ────────────────────────────────────────── */
 const data = {
   name: "Xaviero Kenjiro Farrell Simangasing",
-  nickname: "Farrell",
+  nickname: "Xaviero",
   email: "farrellsim09@gmail.com",
   phone: "(+62) 851 21540990",
   linkedin: "linkedin.com/in/xavierokenjirofarrell",
   github: "github.com/farrellsim",
-  instagram: "instagram.com/farrell.sim",
+  instagram: "instagram.com/builtbyxaviero",
   about: [
-    "Final-year Software Engineering student at Taylor's University — dual award with UWE Bristol. Currently in Jakarta on my third internship at Avenew Group, running QA across five platforms and helping build things that actually ship.",
-    "Three internships across Indonesia, Brunei, and Malaysia. I've done the range — front-end dev, UI/UX, software testing, project delivery. The throughline is that I actually care about how systems behave and whether they work properly, not just whether they look right in Figma.",
-    "Looking for grad roles starting September 2026. Open to QA, testing, front-end, or tech consulting — somewhere with real problems and people who take the craft seriously.",
+    "Final-year Software Engineering student at Taylor's University — dual award with UWE Bristol. Currently in Jakarta on my third internship at Avenew Group, working across QA and front-end development while helping build things that actually ship.",
+    "Three internships across Indonesia, Brunei, and Malaysia. I've done the range — full-stack dev, UI/UX, software testing, project delivery. The throughline is that I actually care about how systems behave and whether they work properly, not just whether they look right in Figma.",
+    "I'm also building @builtbyxaviero, a digital Instagram and TikTok page where I talk about technology, share ideas and thoughts, and show the projects I'm making along the way. It is part notebook, part build log, and part reminder that technology should be useful, clear, and easier to understand.",
+    "At the core, I'm a tech enthusiast and builder who enjoys turning ideas into useful digital solutions. I like exploring software, websites, systems, AI, and the small product decisions that can help life and business work better.",
     "Off-keyboard: golf when the sun cooperates, games when it doesn't, coffee regardless.",
   ],
   experience: [
@@ -58,32 +59,6 @@ const data = {
         "Promoted flagship events including ImagineHack 2024 & 2025 and the NexTech Conference. Served as Marketing/PR Lead and Event Emcee.",
         "Coordinated with corporate partners — Hilti, PayNet, Deriv, Accenture, Deloitte — on sponsorship and outreach.",
       ],
-    },
-  ],
-  projects: [
-    {
-      name: "DigiSahabat",
-      subtitle: "Final Year Capstone",
-      desc: "Culturally adaptive digital literacy mobile app for Orang Asli communities in Malaysia. Led a 5-person team as PM and AI Engineer — owned roadmap, sprint planning, and stakeholder comms. AI-powered voice and chat guidance for low-literacy users.",
-      stack: [
-        "React Native",
-        "Node.js",
-        "MongoDB",
-        "Tailwind CSS",
-        "Gemini AI",
-      ],
-    },
-    {
-      name: "Smart CV Analyzer",
-      subtitle: "University Project",
-      desc: "Web-based CV evaluation system using Gemini AI to generate feedback on resume clarity, structure, and job relevance. Database-backed submission storage and history.",
-      stack: ["JavaScript", "PHP", "HTML/CSS", "MySQL", "Gemini AI"],
-    },
-    {
-      name: "DoomParade",
-      subtitle: "University Project",
-      desc: "Tower defence game built with Java and JavaFX. Implements enemy pathfinding, tower placement, and attack systems with modular OOP-structured game logic.",
-      stack: ["Java", "JavaFX"],
     },
   ],
   skills: {
@@ -131,7 +106,7 @@ const data = {
   },
 };
 
-const PAGES = ["home", "about", "experience", "projects", "skills", "contact"];
+const PAGES = ["home", "projects", "skills"];
 
 /* ─── REVEAL ──────────────────────────────────────── */
 function Reveal({ children, delay = 0, className = "" }) {
@@ -196,14 +171,7 @@ function Navbar({ theme, toggleTheme, page, navigate }) {
     };
   }, [open]);
 
-  const links = [
-    "home",
-    "about",
-    "experience",
-    "projects",
-    "skills",
-    "contact",
-  ];
+  const links = ["home", "projects", "skills"];
 
   const go = (p) => {
     navigate(p);
@@ -213,9 +181,7 @@ function Navbar({ theme, toggleTheme, page, navigate }) {
   return (
     <nav className={`nav ${scrolled ? "nav--scrolled" : ""}`}>
       <button className="nav__logo" onClick={() => go("home")}>
-        <span className="nav__logo-bracket">&lt;</span>
-        XKF
-        <span className="nav__logo-bracket">/&gt;</span>
+        <BrandLogo />
       </button>
 
       <button
@@ -241,7 +207,7 @@ function Navbar({ theme, toggleTheme, page, navigate }) {
           ))}
           <li>
             <button className="nav__cta" onClick={() => go("contact")}>
-              hire me
+              contact
             </button>
           </li>
         </ul>
@@ -257,83 +223,132 @@ function Navbar({ theme, toggleTheme, page, navigate }) {
   );
 }
 
-/* ─── HERO (HOME PAGE) ────────────────────────────── */
-function Hero({ navigate }) {
+/* ─── HOME PAGE ───────────────────────────────────── */
+function Home({ navigate }) {
   return (
-    <div className="page-wrap">
+    <div className="home-page page-wrap">
       <div className="container">
-        <Reveal className="hero__simple">
-          <div className="hero__simple-top">
-            <div className="hero__avatar-sm">
-              <img src="/avatar.png" alt="Farrell" />
+        <section id="intro" className="home-section home-section--hero">
+          <Reveal className="hero__simple">
+            <div className="hero__simple-top">
+              <div className="hero__avatar-sm">
+                <img src="/avatar.png" alt="Farrell" />
+              </div>
+              <h1 className="hero__greeting">Hi, I'm Xaviero.</h1>
             </div>
-            <h1 className="hero__greeting">
-              Hi <span className="hero__wave">👋</span>
-            </h1>
-          </div>
 
-          <p className="hero__intro">
-            I'm <strong>{data.nickname}</strong>{" "}
-            <span className="hero__intro-fullname">({data.name})</span>.{" "}
-            Final-year Software Engineering student at{" "}
-            <span className="hero__hl">Taylor's University & UWE Bristol</span>,
-            currently in <span className="hero__hl">Jakarta</span> as an
-            Information Systems Intern at{" "}
-            <span className="hero__hl">Avenew Group</span>.
-          </p>
+            <p className="hero__intro">
+              I'm <strong>{data.nickname}</strong>, usually called Farrell.{" "}
+              Final-year Software Engineering student at{" "}
+              <span className="hero__hl">Taylor's University & UWE Bristol</span>,
+              currently in <span className="hero__hl">Jakarta</span> as an
+              Information Systems Intern at{" "}
+              <span className="hero__hl">Avenew Group</span>.
+            </p>
 
-          <div className="hero__meta">
-            <span>📍 Jakarta, Indonesia</span>
-            <span className="hero__meta-dot">·</span>
-            <span>🇧🇳 Grew up in Brunei</span>
-            <span className="hero__meta-dot">·</span>
-            <span className="hero__meta-avail">open Sept 2026</span>
-          </div>
-
-          <div className="hero__cta">
-            <button onClick={() => navigate("contact")} className="btn btn--primary">
-              say hi
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg>
-            </button>
-            <div className="hero__socials">
-              <a
-                href={`https://${data.github}`}
-                target="_blank"
-                rel="noreferrer"
-                className="social-link"
-              >
-                <GithubIcon /> GitHub
-              </a>
-              <a
-                href={`https://${data.linkedin}`}
-                target="_blank"
-                rel="noreferrer"
-                className="social-link"
-              >
-                <LinkedInIcon /> LinkedIn
-              </a>
-              <a
-                href={`https://${data.instagram}`}
-                target="_blank"
-                rel="noreferrer"
-                className="social-link"
-              >
-                <InstagramIcon /> Instagram
-              </a>
+            <div className="hero__meta">
+              <span>Jakarta, Indonesia</span>
+              <span className="hero__meta-dot">·</span>
+              <span>Grew up in Brunei</span>
             </div>
+
+            <div className="hero__cta">
+              <button onClick={() => navigate("contact")} className="btn btn--primary">
+                say hi
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </button>
+              <div className="hero__socials">
+                <a
+                  href={`https://${data.github}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-link"
+                >
+                  <GithubIcon /> GitHub
+                </a>
+                <a
+                  href={`https://${data.linkedin}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-link"
+                >
+                  <LinkedInIcon /> LinkedIn
+                </a>
+                <a
+                  href={`https://${data.instagram}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-link"
+                >
+                  <InstagramIcon /> @builtbyxaviero
+                </a>
+              </div>
+            </div>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <BuildLog />
+          </Reveal>
+        </section>
+
+        <Section id="about" title="About me." delay={0.05}>
+          <div className="about__text">
+            {data.about.map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
           </div>
-        </Reveal>
+        </Section>
+
+        <Section id="experience" title="Where I've worked." delay={0.08}>
+          <div className="exp">
+            {data.experience.map((e, i) => (
+              <Reveal key={i} delay={i * 0.05}>
+                <div className="exp__row">
+                  <div className="exp__period">{e.period}</div>
+                  <div className="exp__body">
+                    <h3 className="exp__role">{e.role}</h3>
+                    <p className="exp__company">
+                      <span className="exp__company-name">{e.company}</span>
+                      <span className="exp__company-loc"> · {e.location}</span>
+                    </p>
+                    <ul className="exp__points">
+                      {e.points.map((pt, j) => (
+                        <li key={j}>{pt}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </Section>
+
+        <section id="contact" className="home-section home-section--contact">
+          <Contact />
+        </section>
       </div>
     </div>
+  );
+}
+
+function Section({ id, title, children, delay = 0 }) {
+  return (
+    <section id={id} className="home-section">
+      <Reveal delay={delay}>
+        <div className="sh">
+          <h2 className="sh__title">{title}</h2>
+        </div>
+      </Reveal>
+      <Reveal delay={delay + 0.05}>{children}</Reveal>
+    </section>
   );
 }
 
@@ -353,131 +368,53 @@ function PageWrap({ title, children }) {
   );
 }
 
-/* ─── ABOUT PAGE ──────────────────────────────────── */
-function About() {
+/* ─── PROJECTS PAGE ───────────────────────────────── */
+function Projects() {
   return (
-    <PageWrap title="About me.">
+    <PageWrap title="Projects.">
       <Reveal delay={0.05}>
-        <div className="about__text">
-          {data.about.map((para, i) => (
-            <p key={i}>{para}</p>
-          ))}
+        <div className="projects__empty" aria-label="More projects coming soon">
+          <span className="projects__more-mark">&lt;x/&gt;</span>
+          <h3>to be continued...</h3>
+          <p>
+            More builds are being shaped, tested, and documented. I will add
+            them here when they are ready to share properly.
+          </p>
         </div>
       </Reveal>
     </PageWrap>
   );
 }
 
-/* ─── EXPERIENCE PAGE ─────────────────────────────── */
-function Experience() {
-  return (
-    <PageWrap title="Where I've worked.">
-      <div className="exp">
-        {data.experience.map((e, i) => (
-          <Reveal key={i} delay={i * 0.05}>
-            <div className="exp__row">
-              <div className="exp__period">{e.period}</div>
-              <div className="exp__body">
-                <h3 className="exp__role">{e.role}</h3>
-                <p className="exp__company">
-                  <span className="exp__company-name">{e.company}</span>
-                  <span className="exp__company-loc"> · {e.location}</span>
-                </p>
-                <ul className="exp__points">
-                  {e.points.map((pt, j) => (
-                    <li key={j}>{pt}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-    </PageWrap>
-  );
-}
+function BuildLog() {
+  const lines = [
+    "building useful web systems",
+    "testing ideas in public",
+    "posting notes @builtbyxaviero",
+  ];
 
-/* ─── PROJECTS PAGE ───────────────────────────────── */
-function ProjectCard({ p }) {
   return (
-    <article className="proj">
-      <div className="proj__head">
-        <h3 className="proj__name">{p.name}</h3>
-        <span className="proj__sub">{p.subtitle}</span>
+    <aside className="build-log" aria-label="Current build log">
+      <div className="build-log__top">
+        <span className="build-log__status">
+          <span className="build-log__dot" />
+          now
+        </span>
+        <span className="build-log__path">~/built-by-xaviero</span>
       </div>
-      <p className="proj__desc">{p.desc}</p>
-      <div className="proj__stack">
-        {p.stack.map((s) => (
-          <span key={s} className="chip">
-            {s}
-          </span>
+      <div className="build-log__body">
+        {lines.map((line) => (
+          <p key={line}>
+            <span className="build-log__prompt">&gt;</span>
+            {line}
+          </p>
         ))}
+        <p className="build-log__typing">
+          <span className="build-log__prompt">&gt;</span>
+          ship thoughtfully<span className="build-log__cursor" />
+        </p>
       </div>
-    </article>
-  );
-}
-
-function Projects() {
-  const [active, setActive] = useState(0);
-  const total = data.projects.length;
-  return (
-    <PageWrap title="Things I've made.">
-      <div className="projects__grid projects__grid--desktop">
-        {data.projects.map((p, i) => (
-          <Reveal key={i} delay={i * 0.06}>
-            <ProjectCard p={p} />
-          </Reveal>
-        ))}
-      </div>
-
-      <div className="projects__carousel--mobile">
-        <ProjectCard p={data.projects[active]} />
-        <div className="carousel__controls">
-          <button
-            className="carousel__btn"
-            onClick={() => setActive((a) => (a - 1 + total) % total)}
-            aria-label="Previous"
-          >
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
-          <div className="carousel__dots">
-            {data.projects.map((_, i) => (
-              <button
-                key={i}
-                className={`carousel__dot ${i === active ? "carousel__dot--active" : ""}`}
-                onClick={() => setActive(i)}
-                aria-label={`Project ${i + 1}`}
-              />
-            ))}
-          </div>
-          <button
-            className="carousel__btn"
-            onClick={() => setActive((a) => (a + 1) % total)}
-            aria-label="Next"
-          >
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </PageWrap>
+    </aside>
   );
 }
 
@@ -515,66 +452,64 @@ function Skills() {
 /* ─── CONTACT PAGE ────────────────────────────────── */
 function Contact() {
   return (
-    <div className="page-wrap">
-      <div className="contact container">
-        <Reveal>
-          <h2 className="contact__title">
-            Let's talk{" "}
-            <span className="contact__wave" aria-hidden="true">
-              👀
-            </span>
-          </h2>
-          <p className="contact__sub">
-            Open to grad roles, collaborations, and the occasional good
-            conversation.
-          </p>
-          <a
-            href={`mailto:${data.email}`}
-            className="btn btn--primary contact__btn"
+    <div className="contact">
+      <Reveal>
+        <h2 className="contact__title">
+          Let's talk{" "}
+          <span className="contact__wave" aria-hidden="true">
+            👀
+          </span>
+        </h2>
+        <p className="contact__sub">
+          For projects, collaborations, ideas, or a good conversation about
+          software, AI, and building useful things.
+        </p>
+        <a
+          href={`mailto:${data.email}`}
+          className="btn btn--primary contact__btn"
+        >
+          {data.email}
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
           >
-            {data.email}
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </a>
+        <div className="contact__links">
+          <a
+            href={`https://${data.linkedin}`}
+            target="_blank"
+            rel="noreferrer"
+            className="contact__link"
+          >
+            <LinkedInIcon /> LinkedIn
           </a>
-          <div className="contact__links">
-            <a
-              href={`https://${data.linkedin}`}
-              target="_blank"
-              rel="noreferrer"
-              className="contact__link"
-            >
-              <LinkedInIcon /> LinkedIn
-            </a>
-            <a
-              href={`https://${data.github}`}
-              target="_blank"
-              rel="noreferrer"
-              className="contact__link"
-            >
-              <GithubIcon /> GitHub
-            </a>
-            <a
-              href={`https://${data.instagram}`}
-              target="_blank"
-              rel="noreferrer"
-              className="contact__link"
-            >
-              <InstagramIcon /> Instagram
-            </a>
-            <a href={`tel:${data.phone}`} className="contact__link">
-              <PhoneIcon /> {data.phone}
-            </a>
-          </div>
-        </Reveal>
-      </div>
+          <a
+            href={`https://${data.github}`}
+            target="_blank"
+            rel="noreferrer"
+            className="contact__link"
+          >
+            <GithubIcon /> GitHub
+          </a>
+          <a
+            href={`https://${data.instagram}`}
+            target="_blank"
+            rel="noreferrer"
+            className="contact__link"
+          >
+            <InstagramIcon /> @builtbyxaviero
+          </a>
+          <a href={`tel:${data.phone}`} className="contact__link">
+            <PhoneIcon /> {data.phone}
+          </a>
+        </div>
+      </Reveal>
     </div>
   );
 }
@@ -583,11 +518,7 @@ function Contact() {
 function Footer() {
   return (
     <footer className="footer">
-      <span className="footer__brand">
-        <span className="footer__bracket">&lt;</span>
-        XKF
-        <span className="footer__bracket">/&gt;</span>
-      </span>
+      <span className="footer__brand">&lt;x/&gt; built by xaviero</span>
       <span className="footer__sep">·</span>
       <span>built with care, {new Date().getFullYear()}</span>
     </footer>
@@ -595,6 +526,20 @@ function Footer() {
 }
 
 /* ─── ICONS ───────────────────────────────────────── */
+function BrandLogo() {
+  return (
+    <span className="brand-logo" aria-label="built by xaviero">
+      <span className="brand-logo__mark" aria-hidden="true">
+        <span>&lt;</span>
+        <span>x</span>
+        <span>/</span>
+        <span>&gt;</span>
+      </span>
+      <span className="brand-logo__text">built by xaviero</span>
+    </span>
+  );
+}
+
 function GithubIcon() {
   return (
     <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
@@ -702,13 +647,29 @@ export default function App() {
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (page === "home" && hash === "contact") {
+      document.getElementById("contact")?.scrollIntoView({ block: "start" });
+    }
+  }, [page]);
+
   const navigate = (newPage) => {
-    setPage(newPage);
+    const nextPage = PAGES.includes(newPage) ? newPage : "home";
+    setPage(nextPage);
     window.history.pushState(
       null,
       "",
       newPage === "home" ? "#" : `#${newPage}`,
     );
+
+    if (newPage === "contact") {
+      window.requestAnimationFrame(() => {
+        document.getElementById("contact")?.scrollIntoView({ block: "start" });
+      });
+      return;
+    }
+
     window.scrollTo(0, 0);
   };
 
@@ -723,12 +684,9 @@ export default function App() {
         navigate={navigate}
       />
       <main className="main-page" key={page}>
-        {page === "home" && <Hero navigate={navigate} />}
-        {page === "about" && <About />}
-        {page === "experience" && <Experience />}
+        {page === "home" && <Home navigate={navigate} />}
         {page === "projects" && <Projects />}
         {page === "skills" && <Skills />}
-        {page === "contact" && <Contact />}
       </main>
       <Footer />
     </>
