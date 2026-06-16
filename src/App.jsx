@@ -5,7 +5,7 @@ import "./App.css";
 const data = {
   name: "Xaviero Kenjiro Farrell Simangasing",
   nickname: "Xaviero",
-  email: "farrellsim09@gmail.com",
+  email: "builtbyxaviero@gmail.com",
   phone: "(+62) 851 21540990",
   linkedin: "linkedin.com/in/xavierokenjirofarrell",
   github: "github.com/farrellsim",
