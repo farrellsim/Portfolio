@@ -276,7 +276,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1.25rem 2rem;
+  gap: 0.9rem 0.75rem;
 }
 
 .hero__socials {
@@ -643,7 +643,8 @@
 }
 
 /* ─── PROJECTS ───────────────────────────────────── */
-.projects__empty {
+.projects__empty,
+.services__renovation {
   min-height: 320px;
   border: 1px dashed var(--border);
   border-radius: 8px;
@@ -654,17 +655,37 @@
   gap: 0.7rem;
   padding: 2rem;
 }
-.projects__empty h3 {
+.projects__empty h3,
+.services__renovation h3 {
   color: var(--text);
   font-size: 1.4rem;
   font-weight: 600;
   letter-spacing: 0;
 }
-.projects__empty p {
+.projects__empty p,
+.services__renovation p {
   max-width: 48ch;
   color: var(--text-muted);
   font-size: 0.9rem;
   line-height: 1.7;
+}
+
+/* ─── SERVICES ───────────────────────────────────── */
+.services__eyebrow {
+  width: fit-content;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  padding: 0.45rem 0.7rem;
+  text-transform: uppercase;
+}
+
+.services__renovation .btn {
+  width: fit-content;
+  margin-top: 0.55rem;
 }
 
 /* ─── CONTACT ────────────────────────────────────── */
@@ -788,7 +809,11 @@
     align-items: stretch;
     width: 100%;
   }
-  .hero__cta .btn { justify-content: center; }
+  .hero__cta .btn,
+  .services__renovation .btn {
+    justify-content: center;
+    width: 100%;
+  }
   .hero__socials { justify-content: center; }
   .hero__tiles { gap: 0.5rem; }
   .build-log__top {

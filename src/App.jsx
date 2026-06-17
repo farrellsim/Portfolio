@@ -13,7 +13,7 @@ const data = {
   about: [
     "Final-year Software Engineering student at Taylor's University — dual award with UWE Bristol. Currently in Jakarta on my third internship at Avenew Group, working across QA and front-end development while helping build things that actually ship.",
     "Three internships across Indonesia, Brunei, and Malaysia. I've done the range — full-stack dev, UI/UX, software testing, project delivery. The throughline is that I actually care about how systems behave and whether they work properly, not just whether they look right in Figma.",
-    "I'm also building @builtbyxaviero, a digital Instagram and TikTok page where I talk about technology, share ideas and thoughts, and show the projects I'm making along the way. It is part notebook, part build log, and part reminder that technology should be useful, clear, and easier to understand.",
+    "I'm also building @builtbyxaviero, a digital Instagram and TikTok page where I talk about technology, share ideas and thoughts, and show the projects I'm making along the way. It is part notebook, part build log, and part reminder that technology should be useful, clear, and easier to understand. Through builtbyxaviero, I'm also currently taking on client work for websites, software, and AI automation builds.",
     "At the core, I'm a tech enthusiast and builder who enjoys turning ideas into useful digital solutions. I like exploring software, websites, systems, AI, and the small product decisions that can help life and business work better.",
     "Off-keyboard: golf when the sun cooperates, games when it doesn't, coffee regardless.",
   ],
@@ -63,7 +63,7 @@ const data = {
   ],
 };
 
-const PAGES = ["home", "projects"];
+const PAGES = ["home", "projects", "services"];
 
 /* ─── REVEAL ──────────────────────────────────────── */
 function Reveal({ children, delay = 0, className = "" }) {
@@ -128,7 +128,7 @@ function Navbar({ theme, toggleTheme, page, navigate }) {
     };
   }, [open]);
 
-  const links = ["home", "projects"];
+  const links = ["home", "projects", "services"];
 
   const go = (p) => {
     navigate(p);
@@ -225,6 +225,9 @@ function Home({ navigate }) {
               </button>
               <button onClick={() => navigate("projects")} className="btn btn--ghost">
                 projects I've done
+              </button>
+              <button onClick={() => navigate("services")} className="btn btn--ghost">
+                services
               </button>
               <div className="hero__socials">
                 <a
@@ -340,6 +343,39 @@ function Projects() {
             More builds are being shaped, tested, and documented. I will add
             them here when they are ready to share properly.
           </p>
+        </div>
+      </Reveal>
+    </PageWrap>
+  );
+}
+
+/* ─── SERVICES PAGE ──────────────────────────────── */
+function Services({ navigate }) {
+  return (
+    <PageWrap title="Services.">
+      <Reveal delay={0.05}>
+        <div className="services__renovation" aria-label="Services page under renovation">
+          <span className="services__eyebrow">under renovation</span>
+          <h3>Digital build services are taking shape.</h3>
+          <p>
+            This page will soon outline how I can help with focused websites,
+            software interfaces, and AI automation systems through builtbyxaviero.
+            For now, I am refining the offers, process, and project fit so the work
+            stays practical, clear, and genuinely useful.
+          </p>
+          <button onClick={() => navigate("contact")} className="btn btn--primary">
+            talk about a build
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </button>
         </div>
       </Reveal>
     </PageWrap>
@@ -615,6 +651,7 @@ export default function App() {
       <main className="main-page" key={page}>
         {page === "home" && <Home navigate={navigate} />}
         {page === "projects" && <Projects />}
+        {page === "services" && <Services navigate={navigate} />}
       </main>
       <Footer />
     </>
