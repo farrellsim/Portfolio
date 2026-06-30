@@ -51,8 +51,8 @@ export const PAGES = ["home", "services", "projects", "about", "contact"];
 
 export const PAGE_META = {
   home: {
-    title: "builtbyxaviero — software & systems by Farrell",
-    description: "I build websites, internal systems, AI automations, and mobile apps. Software Engineering student at Taylor's University, based in Jakarta.",
+    title: "builtbyxaviero",
+    description: "Helping people and businesses turn ideas into things that actually work.",
   },
   services: {
     title: "Services — builtbyxaviero",
