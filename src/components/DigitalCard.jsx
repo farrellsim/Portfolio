@@ -6,15 +6,11 @@ function buildVCard() {
   const lines = [
     "BEGIN:VCARD",
     "VERSION:3.0",
-    "N:Simangasing;Xaviero;Kenjiro Farrell;;",
-    `FN:${data.cardName}`,
-    `NICKNAME:${data.nickname}`,
-    "ORG:builtbyxaviero",
-    "TITLE:Founder",
+    "N:;Farrell;;;",
+    "FN:Farrell",
     `EMAIL;TYPE=INTERNET:${data.email}`,
     "TEL;TYPE=CELL:+6285121540990",
-    "URL:https://www.builtbyxaviero.com",
-    "NOTE:Websites, internal systems, AI automation, and mobile apps.",
+    "NOTE:builtbyxaviero",
     "END:VCARD",
   ];
   return lines.join("\r\n");
@@ -48,7 +44,7 @@ export default function DigitalCard({ open, onClose }) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "Xaviero-Farrell.vcf";
+    a.download = "Farrell.vcf";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
