@@ -1,6 +1,7 @@
 export const data = {
   brand: "builtbyxaviero",
   name: "Xaviero Kenjiro Farrell Simangasing",
+  cardName: "Xaviero Kenjiro \"Farrell\" Simangasing",
   nickname: "Farrell",
   email: "builtbyxaviero@gmail.com",
   phone: "(+62) 851 21540990",

@@ -548,6 +548,156 @@ html[data-theme="dark"] .hero-bg__mark {
   white-space: nowrap;
 }
 
+/* ─── DIGITAL BUSINESS CARD MODAL ────────────────── */
+.contact__card-btn {
+  display: inline-flex;
+  margin: -1.5rem auto 2.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.card-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 1.25rem;
+  animation: fadeIn 0.2s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.card-modal__panel {
+  background: #fff;
+  color: #0a0a0a;
+  border-radius: 14px;
+  padding: 2rem 1.75rem 1.75rem;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.4);
+  animation: panelIn 0.25s cubic-bezier(0.22, 0.61, 0.36, 1);
+  max-height: 92vh;
+  overflow-y: auto;
+}
+
+.card-modal__close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.9rem;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: #999;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  transition: color 0.2s ease;
+}
+.card-modal__close:hover { color: #0a0a0a; }
+
+.card-modal__head {
+  margin-bottom: 1.25rem;
+}
+.card-modal__brand {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #0a0a0a;
+  letter-spacing: -0.01em;
+}
+
+.card-modal__name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0a0a0a;
+  margin-bottom: 0.3rem;
+  line-height: 1.3;
+}
+.card-modal__role {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+}
+
+.card-modal__qr {
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  margin: 0 auto 0.75rem;
+  width: fit-content;
+}
+
+.card-modal__hint {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #999;
+  margin-bottom: 1.5rem;
+}
+
+.card-modal__details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  text-align: left;
+  margin-bottom: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ececec;
+}
+.card-modal__row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+.card-modal__label {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  min-width: 70px;
+  flex-shrink: 0;
+}
+.card-modal__value {
+  font-size: 0.85rem;
+  color: #0a0a0a;
+  font-weight: 500;
+  word-break: break-all;
+}
+.card-modal__value:hover { text-decoration: underline; }
+
+.card-modal__save {
+  width: 100%;
+  justify-content: center;
+  background: #0a0a0a;
+  color: #fff;
+  border-color: #0a0a0a;
+}
+.card-modal__save:hover {
+  background: #fff;
+  color: #0a0a0a;
+  border-color: #0a0a0a;
+}
+
 /* ─── FOOTER ─────────────────────────────────────── */
 .footer {
   padding: 1.5rem;

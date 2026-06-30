@@ -1,8 +1,11 @@
+import { useState } from "react";
 import Reveal from "../components/Reveal";
+import DigitalCard from "../components/DigitalCard";
 import { LinkedInIcon, WhatsAppIcon, InstagramIcon, ArrowIcon } from "../components/Icons";
 import { data } from "../data";
 
 export default function Contact() {
+  const [cardOpen, setCardOpen] = useState(false);
   return (
     <div className="page-wrap">
       <div className="contact container">
@@ -22,6 +25,13 @@ export default function Contact() {
             {data.email}
             <ArrowIcon />
           </a>
+
+          <button
+            onClick={() => setCardOpen(true)}
+            className="btn btn--ghost contact__card-btn"
+          >
+            📇 digital business card
+          </button>
 
           <div className="contact__methods">
             <a
@@ -78,6 +88,7 @@ export default function Contact() {
           </div>
         </Reveal>
       </div>
+      <DigitalCard open={cardOpen} onClose={() => setCardOpen(false)} />
     </div>
   );
 }
