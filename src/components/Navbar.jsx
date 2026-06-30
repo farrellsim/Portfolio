@@ -38,16 +38,6 @@ export default function Navbar({ theme, toggleTheme, page, navigate }) {
         <BrandLogo theme={theme} variant="horizontal" height="22px" eager />
       </button>
 
-      <button
-        className="nav__burger"
-        onClick={() => setOpen(!open)}
-        aria-label="Toggle menu"
-        aria-expanded={open}
-      >
-        <span className={open ? "open" : ""} />
-        <span className={open ? "open" : ""} />
-      </button>
-
       <div className="nav__right">
         <ul className={`nav__links ${open ? "nav__links--open" : ""}`}>
           {PAGES.map((l) => (
@@ -73,6 +63,15 @@ export default function Navbar({ theme, toggleTheme, page, navigate }) {
           aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
         >
           {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+        </button>
+        <button
+          className="nav__burger"
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle menu"
+          aria-expanded={open}
+        >
+          <span className={open ? "open" : ""} />
+          <span className={open ? "open" : ""} />
         </button>
       </div>
     </nav>

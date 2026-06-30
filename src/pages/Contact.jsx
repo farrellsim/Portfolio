@@ -18,20 +18,22 @@ export default function Contact() {
             Pick whichever you like. I usually reply within a day.
           </p>
 
-          <a
-            href={`mailto:${data.email}`}
-            className="btn btn--primary contact__btn"
-          >
-            {data.email}
-            <ArrowIcon />
-          </a>
+          <div className="contact__cta-row">
+            <a
+              href={`mailto:${data.email}`}
+              className="btn btn--primary contact__btn"
+            >
+              {data.email}
+              <ArrowIcon />
+            </a>
 
-          <button
-            onClick={() => setCardOpen(true)}
-            className="btn btn--ghost contact__card-btn"
-          >
-            📇 digital business card
-          </button>
+            <button
+              onClick={() => setCardOpen(true)}
+              className="btn btn--ghost contact__card-btn"
+            >
+              📇 digital business card
+            </button>
+          </div>
 
           <div className="contact__methods">
             <a
